@@ -13,27 +13,16 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
-  
-  backend:
+
+  backend: 
     build: ./backend
     container_name: booklibrary-backend
     env_file:
     - .env
     ports:
-      - "3001:3001"
+      - "8080:8080"
     depends_on:
       db:
-        condition: service_healthy
-  
-  frontend:
-    build: ./frontend
-    environment:
-      BACKEND_HOST: backend
-      BACKEND_PORT: 3001
-    ports:
-      - "3000:3000"
-    depends_on:
-      backend:
         condition: service_healthy
 
 volumes:
