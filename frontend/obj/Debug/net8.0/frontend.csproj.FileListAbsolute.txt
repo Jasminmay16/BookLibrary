@@ -1030,3 +1030,4 @@
 /home/BookLibrary/dev/frontend/obj/Debug/net8.0/refint/frontend.dll
 /home/BookLibrary/dev/frontend/obj/Debug/net8.0/frontend.pdb
 /home/BookLibrary/dev/frontend/obj/Debug/net8.0/ref/frontend.dll
+/home/BookLibrary/dev/frontend/obj/Debug/net8.0/scopedcss/Pages/Home.razor.rz.scp.css

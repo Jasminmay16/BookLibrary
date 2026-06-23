@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets/frontend.styles.css"
     },
     {
+      "Id": "/home/BookLibrary/dev/frontend/wwwroot/WorkInProgress.png",
+      "PackagePath": "staticwebassets/WorkInProgress.png"
+    },
+    {
       "Id": "/home/BookLibrary/dev/frontend/wwwroot/css/app.css",
       "PackagePath": "staticwebassets/css/app.css"
     },
