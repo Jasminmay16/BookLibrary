@@ -1,15 +1,24 @@
 .env
 appsettings.json
+
 # Build results
 bin/
 obj/
+
+# IDE
+.vs/
+.vscode/
 
 # Auto-generated files
 *.g.cs
 *.generated.cs
 *.AssemblyInfo.cs
 *.cache
-backend/obj/Debug/net8.0/backend.AssemblyInfo.cs
-backend/obj/Debug/net8.0/backend.AssemblyInfoInputs.cache
-backend/obj/Debug/net8.0/backend.assets.cache
-backend/obj/Debug/net8.0/backend.csproj.AssemblyReference.cache
+
+# User-specific files
+*.user
+*.userprefs
+
+# OS files
+.DS_Store
+Thumbs.db
