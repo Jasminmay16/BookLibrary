@@ -3,10 +3,10 @@
 
 <PageTitle>Front page</PageTitle>
 
-<h1>Welcome to the Library!</h1>
-<h2>Demonstrating the Box Model</h2>
-<p>The CSS box model is essentially a box that wraps around every HTML element.</p>
-<p>It consists of (from innermost part to outermost part): content, padding, border, and margin.</p>
+<div class="page-header">
+    <input class="search-bar" type="search" placeholder="Search books..." />
+    <h1>Welcome to the Library!</h1>
+</div>
 
 <div class="book-section">
     @if (!string.IsNullOrEmpty(Error))
@@ -24,11 +24,12 @@
         }
         else
         {
-            @foreach (var book in Books)
+            @for (var i = 0; i < Books.Count; i++)
             {
+                var book = Books[i];
                 <div class="book-card">
                     <div class="rank">
-                        @book.Rank
+                        @(i + 1)
                     </div>
 
                     <img src="@book.ImageUrl" class="book-image" />

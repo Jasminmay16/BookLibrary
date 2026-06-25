@@ -1,6 +1,38 @@
+.page-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1rem 1rem;
+}
+
+.search-bar {
+    width: min(520px, 100%);
+    max-width: 520px;
+    padding: 0.95rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #ffffff;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+    color: #1b1b1f;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: #1b6ec2;
+    box-shadow: 0 0 0 4px rgba(27, 110, 194, 0.12);
+}
+
 .book-section {
     max-width: 900px;   /* vælg en “normal” sidebredde */
     margin: 0 auto;     /* centrer på siden */
+    margin-top: 2rem;
 }
 
 .book-grid {
