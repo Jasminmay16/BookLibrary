@@ -13,8 +13,10 @@ services:
       timeout: 5s
       retries: 10
 
-  backend: 
-    build: ./backend
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
     env_file:
     - .env
     environment:
@@ -26,7 +28,9 @@ services:
         condition: service_healthy
   
   frontend:
-    build: ./frontend
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
     env_file:
     - .env
     environment:

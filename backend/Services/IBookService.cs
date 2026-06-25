@@ -1,3 +1,4 @@
+using Shared;
 public interface IBookService
 {
     /// <summary>

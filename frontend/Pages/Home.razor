@@ -1,4 +1,5 @@
-﻿@page "/"
+﻿@inject HttpClient Http
+@page "/"
 
 <PageTitle>Front page</PageTitle>
 
@@ -8,43 +9,85 @@
 <p>It consists of (from innermost part to outermost part): content, padding, border, and margin.</p>
 
 <div class="book-section">
+    @if (!string.IsNullOrEmpty(Error))
+    {
+        <div class="error">Error: @Error</div>
+    }
     <div class="book-grid">
-        @foreach (var book in Books)
+        @if (IsLoading)
         {
-            <div class="book-card">
-                <div class="rank">
-                    @book.Rank
-                </div>
+            <p>Loading books...</p>
+        }
+        else if (Books == null || Books.Count == 0)
+        {
+            <p>No books found.</p>
+        }
+        else
+        {
+            @foreach (var book in Books)
+            {
+                <div class="book-card">
+                    <div class="rank">
+                        @book.Rank
+                    </div>
 
-                <img src="@book.ImageUrl" class="book-image" />
+                    <img src="@book.ImageUrl" class="book-image" />
 
-                <div class="book-info">
-                    <h3>@book.Title</h3>
-                    <p class="author">@book.Author</p>
+                    <div class="book-info">
+                        <h3>@book.Title</h3>
+                        <p class="author">@book.Author</p>
+                    </div>
                 </div>
-            </div>
+            }
         }
     </div>
 </div>
 
 @code {
-    private List<Book> Books = new()
-    {
-        new Book { Rank = 1, Title = "The Great Gatsby", Author = "F. Scott Fitzgerald" },
-        new Book { Rank = 2, Title = "To Kill a Mockingbird", Author = "Harper Lee" },
-        new Book { Rank = 3, Title = "1984", Author = "George Orwell" },
-        new Book { Rank = 4, Title = "Pride and Prejudice", Author = "Jane Austen" },
-        new Book { Rank = 5, Title = "Sense and Sensibility", Author = "Jane Austen" },
-        new Book { Rank = 6, Title = "Sense and Sensibility", Author = "Jane Austen" },
-        new Book { Rank = 7, Title = "Sense and Sensibility", Author = "Jane Austen" },
-        new Book { Rank = 8, Title = "Sense and Sensibility", Author = "Jane Austen" },
-    };
+    private List<GetBooksDto> Books = new();
+    private bool IsLoading = true;
+    private bool IsAdding = false;
+    private string? Error;
 
-    public class Book
+    protected override async Task OnInitializedAsync()
     {
-        public int Rank { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public string ImageUrl = "WorkInProgress.png";
+        await LoadBooks();
+    }
+
+    private async Task LoadBooks()
+    {
+        IsLoading = true;
+        Error = null;
+        try
+        {
+            var resp = await Http.GetAsync("api/books");
+            var body = await resp.Content.ReadAsStringAsync();
+            if (!resp.IsSuccessStatusCode)
+            {
+                Error = $"Request failed: {resp.StatusCode}: {body}";
+                Books = new List<GetBooksDto>();
+            }
+            else
+            {
+                try
+                {
+                    Books = System.Text.Json.JsonSerializer.Deserialize<List<GetBooksDto>>(body, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<GetBooksDto>();
+                }
+                catch (Exception ex)
+                {
+                    Error = $"Deserialization error: {ex.Message}. Body: {body}";
+                    Books = new List<GetBooksDto>();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Error = ex.Message;
+            Books = new List<GetBooksDto>();
+        }
+        finally
+        {
+            IsLoading = false;
+        }
     }
 }
