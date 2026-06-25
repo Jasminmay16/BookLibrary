@@ -1,0 +1,90 @@
+.book-section {
+    max-width: 900px;   /* vælg en “normal” sidebredde */
+    margin: 0 auto;     /* centrer på siden */
+}
+
+.book-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 1.25rem;
+
+    width: 100%;          /* fylder hele sektionen */
+    overflow-x: auto;     /* scrollbar kun her */
+    overflow-y: hidden;
+
+    margin-top: 1.5rem;
+    padding-bottom: 0.5rem;
+
+    scrollbar-gutter: stable;
+}
+
+.book-card {
+    flex: 0 0 220px;
+    background: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+}
+
+.book-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.rank {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: #1b6ec2;
+    color: #ffffff;
+    padding: 0.45rem 0.8rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+}
+
+.book-info h3 {
+    margin: 0 0 0.65rem;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+.book-info .author {
+    margin: 0;
+    color: #555555;
+    font-size: 0.96rem;
+}
+
+h1 {
+    color: #1b1b1f;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    color: #3a3a43;
+    font-size: 1.35rem;
+    margin-bottom: 0.85rem;
+}
+
+p {
+    color: #4d4d57;
+    line-height: 1.75;
+    max-width: 42rem;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+

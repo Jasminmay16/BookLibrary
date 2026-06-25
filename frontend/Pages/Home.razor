@@ -1,7 +1,50 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Front page</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Welcome to the Library!</h1>
+<h2>Demonstrating the Box Model</h2>
+<p>The CSS box model is essentially a box that wraps around every HTML element.</p>
+<p>It consists of (from innermost part to outermost part): content, padding, border, and margin.</p>
 
-Welcome to your new app.
+<div class="book-section">
+    <div class="book-grid">
+        @foreach (var book in Books)
+        {
+            <div class="book-card">
+                <div class="rank">
+                    @book.Rank
+                </div>
+
+                <img src="@book.ImageUrl" class="book-image" />
+
+                <div class="book-info">
+                    <h3>@book.Title</h3>
+                    <p class="author">@book.Author</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private List<Book> Books = new()
+    {
+        new Book { Rank = 1, Title = "The Great Gatsby", Author = "F. Scott Fitzgerald" },
+        new Book { Rank = 2, Title = "To Kill a Mockingbird", Author = "Harper Lee" },
+        new Book { Rank = 3, Title = "1984", Author = "George Orwell" },
+        new Book { Rank = 4, Title = "Pride and Prejudice", Author = "Jane Austen" },
+        new Book { Rank = 5, Title = "Sense and Sensibility", Author = "Jane Austen" },
+        new Book { Rank = 6, Title = "Sense and Sensibility", Author = "Jane Austen" },
+        new Book { Rank = 7, Title = "Sense and Sensibility", Author = "Jane Austen" },
+        new Book { Rank = 8, Title = "Sense and Sensibility", Author = "Jane Austen" },
+    };
+
+    public class Book
+    {
+        public int Rank { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public string ImageUrl = "WorkInProgress.png";
+    }
+}
