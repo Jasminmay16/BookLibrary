@@ -19,6 +19,29 @@ main {
     height: 3.5rem;
     display: flex;
     align-items: center;
+    gap: 0.75rem;
+}
+
+.circle-button {
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 50%;
+    border: 1px solid rgba(27, 110, 194, 0.2);
+    background: #ffffff;
+    color: #1b1b1f;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.circle-button:hover,
+.circle-button:focus-visible {
+    border-color: #1b6ec2;
+    box-shadow: 0 10px 18px rgba(27, 110, 194, 0.15);
+    transform: translateY(-1px);
 }
 
     .top-row ::deep a, .top-row ::deep .btn-link {
