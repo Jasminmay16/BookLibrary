@@ -4,8 +4,14 @@ EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY . .
-RUN dotnet publish -c Release -o /app/publish
+
+COPY backend/backend.csproj backend/
+COPY Shared/Shared.csproj Shared/
+RUN dotnet restore backend/backend.csproj
+
+COPY backend/. backend/
+COPY Shared/. Shared/
+RUN dotnet publish backend/backend.csproj -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

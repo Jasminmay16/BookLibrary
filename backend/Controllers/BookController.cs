@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Shared;
 
-[Route("api/[controller]")]
+[Route("api/[controller]s")]
 [ApiController]
 public class BookController : ControllerBase
 {

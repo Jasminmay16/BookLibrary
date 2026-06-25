@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Shared;
 
 public class BookService : IBookService
 {
@@ -15,6 +16,7 @@ public class BookService : IBookService
             .Select(book => new GetBooksDto
             {
                 Id = book.Id,
+                Rank = book.Rank,
                 Title = book.Title,
                 Author = book.Author,
                 Year = book.Year,
@@ -33,6 +35,7 @@ public class BookService : IBookService
         return new GetBookDto
         {
             Id = book.Id,
+            Rank = book.Rank,
             Title = book.Title,
             Author = book.Author,
             Year = book.Year,
